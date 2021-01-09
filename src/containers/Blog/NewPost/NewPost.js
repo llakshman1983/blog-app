@@ -25,7 +25,9 @@ class NewPost extends Component {
         
     }
 
-  
+    componentDidMount() {
+        console.log("NewPost > componentDidMount > [Props]", this.props);
+    }
 
     render () {
         return (
