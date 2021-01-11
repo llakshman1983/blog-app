@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import'./NewPost.css';
+import { Redirect } from 'react-router';
 
 class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Max',
+        submitted: false
     }
     postDataHandler = () => {
         const postData = {
@@ -19,7 +21,8 @@ class NewPost extends Component {
 
         // Automatically Stringify 
         axios.post('/posts/', postData).then(response => {
-            console.log('POST Response', response)
+            console.log('POST Response', response);
+            this.setState({submitted: true});
         });
 
         
@@ -30,8 +33,13 @@ class NewPost extends Component {
     }
 
     render () {
+        let redirect = null;
+        if (this.state.redirect) {
+            redirect = <Redirect to="/posts"/>;
+        }
         return (
             <div className="NewPost">
+                {redirect}
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
