@@ -34,7 +34,7 @@ class NewPost extends Component {
 
     render () {
         let redirect = null;
-        if (this.state.redirect) {
+        if (this.state.submitted) {
             redirect = <Redirect to="/posts"/>;
         }
         return (
